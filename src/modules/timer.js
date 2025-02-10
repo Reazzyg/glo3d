@@ -1,4 +1,4 @@
-export default function timer(deadline) {
+const timer = (deadline) => {
   const timerHours = document.querySelector('#timer-hours');
   const timerMinutes = document.querySelector('#timer-minutes');
   const timerSeconds = document.querySelector('#timer-seconds');
@@ -38,4 +38,6 @@ export default function timer(deadline) {
   };
   idInterval = setInterval(updateCLock, 1000);
   updateCLock();
-}
+};
+
+export default timer;
