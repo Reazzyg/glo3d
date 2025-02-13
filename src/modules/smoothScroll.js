@@ -1,5 +1,7 @@
 const smoothScroll = () => {
-  const links = document.querySelectorAll('a[href^="#"]:not(.close-btn)');
+  const links = document.querySelectorAll(
+    'a[href^="#"]:not(.close-btn):not(.portfolio-btn)',
+  );
 
   links.forEach((link) => {
     link.addEventListener('click', function (event) {
