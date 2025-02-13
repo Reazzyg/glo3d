@@ -3,13 +3,6 @@ const modal = () => {
   const buttons = document.querySelectorAll('.popup-btn');
   const close = modal.querySelector('.popup-close');
 
-  buttons.forEach((button) => button.addEventListener('click', showModal));
-  close.addEventListener('click', hideModal);
-
-  modal.style.opacity = '0';
-  modal.style.visibility = 'hidden';
-  modal.style.display = 'none';
-
   function animateOpacity(element, start, end, duration, callback) {
     let startTime = null;
 
@@ -50,6 +43,13 @@ const modal = () => {
       modal.style.display = 'none';
     }
   }
+
+  buttons.forEach((button) => button.addEventListener('click', showModal));
+  close.addEventListener('click', hideModal);
+
+  modal.style.opacity = '0';
+  modal.style.visibility = 'hidden';
+  modal.style.display = 'none';
 };
 
 export default modal;
