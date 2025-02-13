@@ -3,41 +3,51 @@ const modal = () => {
   const buttons = document.querySelectorAll('.popup-btn');
   const close = modal.querySelector('.popup-close');
 
-  buttons.forEach((button) => {
-    button.addEventListener('click', toggleModal);
-  });
-
-  close.addEventListener('click', toggleModal);
+  buttons.forEach((button) => button.addEventListener('click', showModal));
+  close.addEventListener('click', hideModal);
 
   modal.style.opacity = '0';
   modal.style.visibility = 'hidden';
   modal.style.display = 'none';
-  modal.style.transition =
-    'opacity 0.5s ease-in-out, visibility 0.5s ease-in-out';
 
-  function toggleModal() {
+  function animateOpacity(element, start, end, duration, callback) {
+    let startTime = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      let progress = (timestamp - startTime) / duration;
+      if (progress > 1) progress = 1;
+
+      element.style.opacity = start + (end - start) * progress;
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else if (callback) {
+        callback();
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  function showModal() {
     if (window.innerWidth > 768) {
-      if (modal.style.visibility === 'hidden') {
-        modal.style.display = 'block';
-        setTimeout(() => {
-          modal.style.opacity = '1';
-          modal.style.visibility = 'visible';
-        }, 10);
-      } else {
-        modal.style.opacity = '0';
-        modal.style.visibility = 'hidden';
-        setTimeout(() => {
-          modal.style.display = 'none';
-        }, 500);
-      }
-    } else {
-      modal.style.opacity = '1';
+      modal.style.display = 'block';
       modal.style.visibility = 'visible';
-      if (modal.style.display === 'block') {
+      animateOpacity(modal, 0, 1, 500);
+    } else {
+      modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+  }
+
+  function hideModal() {
+    if (window.innerWidth > 768) {
+      animateOpacity(modal, 1, 0, 500, () => {
+        modal.style.visibility = 'hidden';
         modal.style.display = 'none';
-      } else {
-        modal.style.display = 'block';
-      }
+      });
+    } else {
+      modal.style.display = 'none';
     }
   }
 };
