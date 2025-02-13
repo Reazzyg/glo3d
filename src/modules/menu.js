@@ -7,9 +7,9 @@ export default function menu() {
   const handleMenu = () => {
     menu.classList.toggle('active-menu');
   };
-  menuBtn.addEventListener('click', () => handleMenu());
-  closeBtn.addEventListener('click', () => handleMenu());
+  menuBtn.addEventListener('click', handleMenu);
+  closeBtn.addEventListener('click', handleMenu);
   menuItems.forEach((item) => {
-    item.addEventListener('click', () => handleMenu());
+    item.addEventListener('click', handleMenu);
   });
 }

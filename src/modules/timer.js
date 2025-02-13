@@ -2,6 +2,7 @@ export default function timer(deadline) {
   const timerHours = document.querySelector('#timer-hours');
   const timerMinutes = document.querySelector('#timer-minutes');
   const timerSeconds = document.querySelector('#timer-seconds');
+  let idInterval;
 
   const getTimeRemaining = () => {
     let dateStop = new Date(deadline).getTime();
@@ -22,7 +23,6 @@ export default function timer(deadline) {
     return value < 10 ? '0' + value : value;
   };
 
-  let idInterval;
   const updateCLock = () => {
     let getTime = getTimeRemaining();
 

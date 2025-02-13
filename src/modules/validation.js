@@ -1,5 +1,14 @@
 const validation = () => {
   const calcItems = document.querySelectorAll('.calc-item');
+  const textArea = document.querySelector(
+    'input[placeholder="Ваше сообщение"]',
+  );
+  const emailInputs = document.querySelectorAll('input[type="email"]');
+  const telInputs = document.querySelectorAll('input[type="tel"]');
+  const textInputs = document.querySelectorAll(
+    'input[type="text"]:not(.calc-item)',
+  );
+
   calcItems.forEach((item) => {
     item.addEventListener('input', (e) => {
       if (
@@ -12,14 +21,10 @@ const validation = () => {
     });
   });
 
-  const textArea = document.querySelector(
-    'input[placeholder="Ваше сообщение"]',
-  );
   textArea.addEventListener('input', (e) => {
     e.target.value = e.target.value.replace(/[^а-яё\s-]/gi, '');
   });
 
-  const emailInputs = document.querySelectorAll('input[type="email"]');
   emailInputs.forEach((input) => {
     input.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(/[^\w@\-.!~*']/gi, '');
@@ -30,7 +35,6 @@ const validation = () => {
     });
   });
 
-  const telInputs = document.querySelectorAll('input[type="tel"]');
   telInputs.forEach((input) => {
     input.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(/[^+0-9()\-\s]/g, '');
@@ -41,7 +45,6 @@ const validation = () => {
     });
   });
 
-  const textInputs = document.querySelectorAll('input[type="text"]');
   textInputs.forEach((input) => {
     input.addEventListener('input', (e) => {
       e.target.value = e.target.value.replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, '');
