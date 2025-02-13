@@ -45,7 +45,14 @@ const modal = () => {
   }
 
   buttons.forEach((button) => button.addEventListener('click', showModal));
-  close.addEventListener('click', hideModal);
+  modal.addEventListener('click', (e) => {
+    if (
+      !e.target.closest('.popup-content') ||
+      e.target.classList.contains('popup-close')
+    ) {
+      hideModal();
+    }
+  });
 
   modal.style.opacity = '0';
   modal.style.visibility = 'hidden';

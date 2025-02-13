@@ -7,9 +7,15 @@ export default function menu() {
   const handleMenu = () => {
     menu.classList.toggle('active-menu');
   };
-  menuBtn.addEventListener('click', handleMenu);
-  closeBtn.addEventListener('click', handleMenu);
-  menuItems.forEach((item) => {
-    item.addEventListener('click', handleMenu);
+
+  document.body.addEventListener('click', (e) => {
+    if (
+      e.target.closest('menu') ||
+      e.target.matches('.close-btn') ||
+      e.target.closest('.menu') ||
+      (menu.classList.contains('active-menu') && !e.target.closest('menu'))
+    ) {
+      handleMenu();
+    }
   });
 }
