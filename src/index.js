@@ -5,6 +5,7 @@ import smoothScroll from './modules/smoothScroll';
 import validation from './modules/validation';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
+import calculator from './modules/calculator';
 
 timer('15 february 2025 18:12');
 menu();
@@ -20,3 +21,5 @@ slider({
   activeDot: 'dot-active',
   timerInterval: 2000,
 });
+
+calculator(100);
