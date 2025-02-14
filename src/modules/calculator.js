@@ -1,3 +1,5 @@
+import { animate } from './helpers';
+
 const calculator = (price = 100) => {
   const total = document.getElementById('total');
   const calcBlock = document.querySelector('.calc-block');
@@ -6,17 +8,18 @@ const calculator = (price = 100) => {
   const calcCount = document.querySelector('.calc-count');
   const calcDay = document.querySelector('.calc-day');
   const animateTotal = (value) => {
-    let i = 0;
-    const step = Math.round(value / 40);
-    const interval = setInterval(() => {
-      if (i < value) {
-        i += step;
-        total.textContent = i;
-      } else {
-        total.textContent = value;
-        clearInterval(interval);
-      }
-    }, 10);
+    const start = +total.textContent || 0; // Начальное значение (если пусто — 0)
+    const difference = value - start; // Разница между старым и новым значением
+
+    animate({
+      duration: 100,
+      timing(timeFraction) {
+        return timeFraction;
+      },
+      draw(progress) {
+        total.textContent = Math.round(start + difference * progress);
+      },
+    });
   };
   const coutCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
