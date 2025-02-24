@@ -8,6 +8,22 @@ const validation = () => {
   const textInputs = document.querySelectorAll(
     'input[type="text"]:not(.calc-item)',
   );
+  const nameInputs = document.querySelectorAll('input[name="user_name"]');
+  const messageInputs = document.querySelectorAll('input[name="user_message"]');
+
+  nameInputs.forEach((input) => {
+    input.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/[^a-zA-Zа-яА-ЯёЁ\s-]/g, '');
+    });
+  });
+  messageInputs.forEach((input) => {
+    input.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(
+        /^[а-яА-ЯёЁ0-9\s.,!?;:"'()\-]+$/,
+        '',
+      );
+    });
+  });
 
   calcItems.forEach((item) => {
     item.addEventListener('input', (e) => {

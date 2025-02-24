@@ -6,6 +6,7 @@ import validation from './modules/validation';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
 import calculator from './modules/calculator';
+import sendForm from './modules/sendForm';
 
 timer('15 february 2025 18:12');
 menu();
@@ -23,3 +24,18 @@ slider({
 });
 
 calculator(100);
+sendForm({
+  formId: 'form1',
+  someElem: [
+    {
+      type: 'block',
+      id: 'total',
+    },
+  ],
+});
+sendForm({
+  formId: 'form2',
+});
+sendForm({
+  formId: 'form3',
+});
