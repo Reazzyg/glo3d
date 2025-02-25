@@ -10,7 +10,7 @@ export default function menu() {
 
   document.body.addEventListener('click', (e) => {
     if (
-      e.target.closest('menu') ||
+      e.target.matches('.active-menu ul li a') ||
       e.target.matches('.close-btn') ||
       e.target.closest('.menu') ||
       (menu.classList.contains('active-menu') && !e.target.closest('menu'))

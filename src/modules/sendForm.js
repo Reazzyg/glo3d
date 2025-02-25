@@ -2,10 +2,12 @@ const sendForm = ({ formId, someElem = [] }) => {
   const form = document.getElementById(formId);
   const statusBlock = document.createElement('div');
   const loader = document.createElement('div');
-  loader.classList.add('loader');
 
   const errorText = 'Error...';
   const successText = 'Data has been sent';
+
+  loader.classList.add('loader');
+  statusBlock.style.color = 'white';
 
   const sendData = (data) => {
     return fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -41,6 +43,10 @@ const sendForm = ({ formId, someElem = [] }) => {
       .then((data) => {
         loader.remove();
         statusBlock.textContent = successText;
+
+        setTimeout(() => {
+          statusBlock.remove();
+        }, 3000);
         formElements.forEach((el) => (el.value = ''));
         console.log(data);
       })
